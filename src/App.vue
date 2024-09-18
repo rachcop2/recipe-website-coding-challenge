@@ -1,26 +1,51 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="cooking-page-home">
+    <h1>Welcome to Rachel's Recipe Website!</h1>
+    <img alt="" src="./assets/cooking-photo-home-page.jpg">
+    <p>
+      Whether you're a seasoned home cook or a newbie to the kitchen, we've got you covered with loads of healthy, delicious, easy to make recipes.
+    </p>
+    <RecipeSearch />
+
+    <FilteredView />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FilteredView from './components/FilteredView.vue'
+import RecipeSearch from './components/RecipeSearch.vue'
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    FilteredView,
+    RecipeSearch
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1.5rem;
+  margin-top: 2rem;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+.cooking-page-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
