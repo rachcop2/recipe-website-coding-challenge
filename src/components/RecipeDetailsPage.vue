@@ -1,7 +1,7 @@
 <template>
   <div class="recipe-details-page">
-    <div v-if="loading">Delicious details incoming!</div>
-    <div v-if="error">{{ errorMsg }}</div>
+    <p v-if="loading" tabindex="0">Delicious details incoming!</p>
+    <p v-if="error" tabindex="0">{{ errorMsg }}</p>
 
     <div v-if="recipe">
       <h1>{{ recipe.title }}</h1>
