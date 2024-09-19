@@ -29,6 +29,8 @@
     font-weight: 200;
     font-style: normal;
     text-align: center;
+    overflow-x: hidden;
+    padding: 1.50rem;
   }
 
   footer {
@@ -56,24 +58,10 @@
     max-width: 200px;
   }
 
-  .search-bar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
   label {
     font-size: 1.25rem;
     margin-bottom: 1rem;
-  }
-
-  input {
-    width: 350px;
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-    font-family: "Raleway", sans-serif;
-    text-align: center;
-  }  
+  } 
 
   button {
     background-color: forestgreen;
@@ -83,6 +71,7 @@
     font-family: "Raleway", sans-serif;
     font-weight: 700;
     font-size: 1.25rem;
+    margin: 1.50rem 0;
 
     &:focus {
       border: 5px solid goldenrod;
@@ -103,7 +92,7 @@
     button {
       height: unset;
       width: unset;
-      margin: 1rem;
+      margin: 1.5rem 0.50rem;
       background-color: white;
       color: black;
       border: none;
@@ -113,11 +102,42 @@
     }
   }
 
+  .results-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .dropdown-section,
+  .search-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.50rem 0;
+  }
+
+  select,
+  input {
+    width: 320px;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+  }
+
   // Tablet/Desktop styling
   @media screen and (min-width: 768px) {
     .recipe-image {
       max-height: 500px;
       max-width: 400px;
     }
+
+    .pagination-section {
+    button {
+      margin: 2rem;
+    }
+  }
   }
 </style>

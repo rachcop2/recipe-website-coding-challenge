@@ -6,36 +6,41 @@
         Whether you're a seasoned home cook or a newbie to the kitchen, we've got you covered with loads of healthy, delicious, easy to make recipes.
       </p>
     <h2>Let's get cookin'!</h2>
-    <!-- Search Bar / Filters -->
-    <div class="search-bar">
+    <div class="search-recipes">
       <form @submit.prevent="handleSearch">
-        <label for="search-bar">What do you want to make today?</label>
-        <input type="text" id="search-bar" placeholder="Search recipes" v-model="searchQuery"/> 
-        <select v-model="cuisines">
-          <option value="">Select all</option>
-          <option value="chinese">Asian</option>
-          <option value="carribean">Caribbean</option>
-          <option value="greek">Greek</option>
-          <option value="indian">Indian</option>
-          <option value="italian">Italian</option>
-          <option value="mexican">Mexican</option>
-          <option value="southern">Southern</option>
-        </select>
+        <div class="search-section">
+          <label for="search-bar">What do you want to make today?</label>
+          <input type="text" id="search-bar" placeholder="Search recipes" v-model="searchQuery"/> 
+        </div>
+        <div class="dropdown-section">
+          <label for="cuisine-opts">Choose a type of cuisine, or Select All for more inspiration!</label>
+          <select v-model="cuisines" id="cuisine-opts">
+            <option value="">Select all</option>
+            <option value="chinese">Asian</option>
+            <option value="carribean">Caribbean</option>
+            <option value="greek">Greek</option>
+            <option value="indian">Indian</option>
+            <option value="italian">Italian</option>
+            <option value="mexican">Mexican</option>
+            <option value="southern">Southern</option>
+          </select>
+        </div>
       </form>
     </div>
-    <button type="submit" @click="handleSearch()">Search</button> 
+    <button type="submit" @click="handleSearch()" value="Search" class="search-button">Search</button> 
 
     <!-- Loading results & error in retrieving information -->
-    <div v-if="isLoading">Loading some delicious results...</div>
-    <div v-if="loadError">{{ errorMsg }}</div>
+    <p v-if="loading" tabindex="0">Loading some delicious results...</p>
+    <p v-if="loadError" tabindex="0">{{ errorMsg }}</p>
 
     <!-- Search Results -->
     <div v-if="recipes.length > 0">
-      <h2>The results are delicious!</h2>
+      <h2>The results are looking delicious!</h2>
       <ul class="results-list">
         <li v-for="recipe in recipes" :key="recipe.id">
           <a :href="'/recipe/' + recipe.id">
-            <img :src="recipe.image" alt="The intended results of the recipe once completed" />
+            <!-- No alt text required as these are decorative. TODO at a later date to dynamically add some descriptive content for recipes? -->
+            <img :src="recipe.image" alt="" />
             <h3>{{ recipe.title }}</h3>>
           </a>
         </li>
