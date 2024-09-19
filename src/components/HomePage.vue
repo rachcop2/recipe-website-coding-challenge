@@ -1,12 +1,11 @@
 <template>
   <div>
     <h1>Welcome to Rachel's Recipe Website!</h1>
-    <img alt="" src="../assets/cooking-photo-home-page.jpg">
-    <p>
-      Whether you're a seasoned home cook or a newbie to the kitchen, we've got you covered with loads of healthy, delicious, easy to make recipes.
-    </p>
+      <img alt="" src="../assets/cooking-photo-home-page.jpg" class="recipe-image">
+      <p>
+        Whether you're a seasoned home cook or a newbie to the kitchen, we've got you covered with loads of healthy, delicious, easy to make recipes.
+      </p>
     <h2>Let's get cookin'!</h2>
-
     <!-- Search Bar / Filters -->
     <div class="search-bar">
       <form @submit.prevent="handleSearch">
@@ -25,15 +24,15 @@
       </form>
     </div>
     <button type="submit" @click="handleSearch()">Search</button> 
-    
+
     <!-- Loading results & error in retrieving information -->
     <div v-if="isLoading">Loading some delicious results...</div>
     <div v-if="loadError">{{ errorMsg }}</div>
 
     <!-- Search Results -->
-    <h2>The results are delicious!</h2>
     <div v-if="recipes.length > 0">
-      <ul>
+      <h2>The results are delicious!</h2>
+      <ul class="results-list">
         <li v-for="recipe in recipes" :key="recipe.id">
           <a :href="'/recipe/' + recipe.id">
             <img :src="recipe.image" alt="The intended results of the recipe once completed" />
@@ -45,8 +44,8 @@
 
     <!-- Pagination -->
     <div class="pagination-section">
-      <button @click="changePage(-1)" :disabled="page === 1">Previous Page</button>
-      <button @click="changePage(1)">Next Page</button>
+      <button @click="changePage(-1)" :disabled="page === 1">&lt;&lt; Previous Page</button>
+      <button @click="changePage(1)">Next Page &gt;&gt;</button>
     </div>
   </div>
 </template>
@@ -87,6 +86,8 @@
     },
   }
 </script>
-<style>
-
+<style lang="scss">
+  .results-list {
+    list-style-type: none;
+  }
 </style>

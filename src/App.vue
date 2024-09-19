@@ -21,7 +21,7 @@
 
 <style lang="scss">
   body {
-    min-height: 100vh;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     font-family: "Raleway", sans-serif;
@@ -29,13 +29,6 @@
     font-weight: 200;
     font-style: normal;
     text-align: center;
-  }
-
-  .logo {
-    height: 200px;
-    width: 200px;
-    display: flex;
-    justify-content: flex-start;
   }
 
   footer {
@@ -56,6 +49,11 @@
     font-size: 1.5rem;
     margin-top: 2rem;
     text-align: center;
+  }
+
+  .recipe-image {
+    max-height: 250px;
+    max-width: 200px;
   }
 
   .search-bar {
@@ -98,6 +96,28 @@
     &:active {
       background-color: greenyellow;
       color: black;
+    }
+  }
+
+  .pagination-section {
+    button {
+      height: unset;
+      width: unset;
+      margin: 1rem;
+      background-color: white;
+      color: black;
+      border: none;
+      &:disabled {
+        color: grey;
+      }
+    }
+  }
+
+  // Tablet/Desktop styling
+  @media screen and (min-width: 768px) {
+    .recipe-image {
+      max-height: 500px;
+      max-width: 400px;
     }
   }
 </style>
