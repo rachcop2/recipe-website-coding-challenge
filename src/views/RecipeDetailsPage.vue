@@ -34,6 +34,12 @@
 
   export default {
     name: 'RecipeDetailsPage',
+    props: {
+      error: {
+        type: String,
+        default: null
+      }
+    },
     data() {
       return {
         recipe: null,

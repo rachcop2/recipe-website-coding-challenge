@@ -1,65 +1,68 @@
 import { shallowMount } from '@vue/test-utils';
-import RecipeComponent from '../../src/components/RecipeDetailsPage.vue'; // Update the path as needed
-import { searchRecipes } from '@/services/api.js';
+import { createRouter, createWebHistory } from 'vue-router';
+import RecipeDetailsPage from '@/views/RecipeDetailsPage.vue';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 
-jest.mock('@/services/api.js'); // Mock the API call
+const routes = [
+  {
+    path: '/recipe/:id',
+    name: 'RecipeDetails',
+    component: RecipeDetailsPage
+  }
+];
 
-describe('RecipeComponent.vue', () => {
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
+
+describe('RecipeDetailsPage.vue', () => {
   let wrapper;
+  let mock;
 
-  beforeEach(() => {
-    wrapper = shallowMount(RecipeComponent);
-  });
+  beforeEach(async () => {
+    // Create a new instance of MockAdapter for each test
+    mock = new MockAdapter(axios);
 
-  it('renders the component with the correct heading and text', () => {
-    expect(wrapper.find('h1').text()).toBe("Welcome to Rachel's Recipe Website!");
-    expect(wrapper.find('p').text()).toContain("Whether you're a seasoned home cook");
-  });
+    // Mock the Axios GET request
+    mock.onGet('/api/recipe/1').reply(200, {
+      id: 1,
+      title: 'Test Recipe',
+      extendedIngredients: [
+        { id: 1, name: 'ingredient1', amount: 1, unit: 'cup' },
+        { id: 2, name: 'ingredient2', amount: 2, unit: 'tbsp' }
+      ],
+      instructions: 'Test instructions'
+    });
 
-  it('should update the search query and cuisine selection', async () => {
-    const input = wrapper.find('input');
-    const select = wrapper.find('select');
-    
-    await input.setValue('pasta');
-    await select.setValue('italian');
+    // Mock the route params
+    router.push({ name: 'RecipeDetails', params: { id: 1 } });
+    await router.isReady();
 
-    expect(wrapper.vm.searchQuery).toBe('pasta');
-    expect(wrapper.vm.cuisines).toBe('italian');
-  });
+    wrapper = shallowMount(RecipeDetailsPage, {
+      global: {
+        plugins: [router]
+      }
+    });
 
-  it('should call handleSearch when search button is clicked', async () => {
-    const mockRecipes = [{ id: 1, title: 'Spaghetti Bolognese', image: 'image.jpg' }];
-    searchRecipes.mockResolvedValue({ data: { results: mockRecipes } });
-
-    const button = wrapper.find('button[type="submit"]');
-    await button.trigger('click');
-
-    expect(searchRecipes).toHaveBeenCalledWith('pasta', 'italian', 0);
-    expect(wrapper.vm.recipes).toEqual(mockRecipes);
-  });
-
-  it('shows a loading message while fetching data', async () => {
-    wrapper.setData({ loading: true });
+    // Wait for the component to update after the Axios call
     await wrapper.vm.$nextTick();
-    
-    expect(wrapper.text()).toContain('Loading some delicious results...');
   });
 
-  it('displays an error message if the API call fails', async () => {
-    searchRecipes.mockRejectedValue(new Error('API Error'));
-    await wrapper.vm.handleSearch();
-
-    expect(wrapper.vm.errorMsg).toBe('Hmm, something went wrong in retrieving these recipes...');
-    expect(wrapper.text()).toContain('Hmm, something went wrong in retrieving these recipes...');
+  afterEach(() => {
+    // Reset the mock after each test
+    mock.reset();
   });
 
-  it('paginates when Next Page is clicked', async () => {
-    wrapper.setData({ page: 1 });
-    const nextPageButton = wrapper.find('.pagination-section button:last-child');
-    
-    await nextPageButton.trigger('click');
-    
-    expect(wrapper.vm.page).toBe(2);
-    expect(searchRecipes).toHaveBeenCalledWith('', '', 5); // Offset for page 2
+  it('renders the recipe title', async () => {
+    expect(wrapper.find('.recipe-title').text()).toBe('Test Recipe');
+  });
+
+  it('renders the recipe ingredients', async () => {
+    const ingredients = wrapper.findAll('.ingredients li');
+    expect(ingredients.length).toBe(2);
+    expect(ingredients.at(0).text()).toBe('ingredient1: 1 cup');
+    expect(ingredients.at(1).text()).toBe('ingredient2: 2 tbsp');
   });
 });

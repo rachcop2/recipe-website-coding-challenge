@@ -4,5 +4,5 @@ module.exports = defineConfig({
 })
 
 module.exports = {
-  publicPath: '/recipe-website-coding-challenge/'
+  publicPath: '/'
 }
