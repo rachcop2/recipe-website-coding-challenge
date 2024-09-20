@@ -60,8 +60,14 @@
   import { searchRecipes } from '@/services/api.js'; 
 
   export default {
-  name: 'HomePage',
-  data () {
+    name: 'HomePage',
+    props: {
+      loadError: {
+        type: String,
+        default: null
+      }
+    },
+    data () {
       return {
         searchQuery: '',
         cuisines:'',
