@@ -1,6 +1,4 @@
 import { createWebHistory, createRouter } from "vue-router"
-// import HomePage from '@/views/Home.vue';           // Home Page component
-// import RecipeDetailsPage from '@/views/Home.vue'; // Recipe Detail Page component
 import Home from "@/views/Home.vue"
 import RecipeDetailsPage from "@/views/RecipeDetailsPage.vue"
 
