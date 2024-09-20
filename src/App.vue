@@ -1,17 +1,9 @@
 <template>
   <router-view />
 </template>
-
 <script>
-  // import RecipeDetailsPage from './views/RecipeDetailsPage.vue';
-  // import HomePage from './views/HomePage.vue';
-
   export default {
     name: 'App',
-    // components: {
-    //   HomePage,
-    //   RecipeDetailsPage,
-    // },
   };
 </script>
 
