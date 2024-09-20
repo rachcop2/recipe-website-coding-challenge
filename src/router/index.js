@@ -4,7 +4,7 @@ import RecipeDetailsPage from "@/views/RecipeDetailsPage.vue"
 
 const routes = [
   {
-    path: "/recipe-website-coding-challenge/",
+    path: "/",
     name: "Home",
     component: Home,
   },
