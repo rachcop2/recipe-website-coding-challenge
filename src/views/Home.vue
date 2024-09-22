@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Welcome to Rachel's Recipe Website!</h1>
-      <img alt="" src="../assets/cooking-photo-home-page.jpg" class="recipe-image">
+      <img alt="" src="../assets/cooking-photo-home-page.jpg" class="homepage-image">
       <p>
         Whether you're a seasoned home cook or a newbie to the kitchen, we've got you covered with loads of healthy, delicious, easy to make recipes.
       </p>
@@ -105,7 +105,7 @@
       text-align: center;
     }
 
-  .recipe-image {
+  .homepage-image {
     max-height: 250px;
     max-width: 200px;
   }
@@ -148,8 +148,17 @@
       background-color: white;
       color: black;
       border: none;
+      cursor: pointer;
       &:disabled {
         color: grey;
+      }
+
+      &:hover {
+        border: 5px solid goldenrod;
+      }
+
+      &:active {
+        color: blue;
       }
     }
   }
@@ -181,15 +190,15 @@
 
   // Tablet/Desktop styling
   @media screen and (min-width: 768px) {
-    .recipe-image {
+    .homepage-image {
       max-height: 500px;
       max-width: 400px;
     }
 
     .pagination-section {
-    button {
-      margin: 2rem;
+      button {
+        margin: 2rem;
+      }
     }
-  }
   }
 </style>

@@ -5,7 +5,7 @@
 
     <div v-if="recipe">
       <h1>{{ recipe.title }}</h1>
-      <img :src="recipe.image" alt="The intended results of the recipe once completed" />
+      <img :src="recipe.image" alt="The intended results of the recipe once completed" class="recipe-image" />
       <div class="health-information">
         <h2>Health Information</h2>
         <p>Vegan: {{ recipe.vegan ? 'Yes' : 'No' }}</p>
@@ -72,6 +72,11 @@
     text-align: left;
   }
 
+  img.recipe-image {
+      height: 250px;
+      width: 300px;
+    }
+
   // Tablet/Desktop styling
   @media screen and (min-width: 1100px) {
     p {
@@ -82,13 +87,8 @@
       text-align: left;
     }
 
-    .ingredients {
-      // justify-content: center;
-    }
-
     .how-to-make {
       display: flex;
-      // justify-content: space-around;
       margin: 0 3rem;
 
       .ingredients,
@@ -106,6 +106,11 @@
       .instructions {
         width: 60%;
       }
+    }
+
+    img.recipe-image {
+      height: 375px;
+      width: 450px;
     }
   }
 </style>
