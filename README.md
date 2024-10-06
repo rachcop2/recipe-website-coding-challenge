@@ -2,12 +2,12 @@
 
 A Vue.js-based recipe website that allows users to browse and view detailed recipes.
 
-This project current state satisfies the requirements of the Coding Challenge to create a recipe website which satisfies the following criteria:
+This project's current state satisfies the requirements of the Coding Challenge to create a recipe website that satisfies the following criteria:
 
 ## Features
 
 ### Home Page
-- Search input
+- Search Input
 - Search button
 - Search results with pagination (5 per page) and ability to filter by cuisine
 - For each search result, display the following information:
@@ -35,9 +35,9 @@ This project current state satisfies the requirements of the Coding Challenge to
 - **Babel**: JavaScript compiler
 
 ## Testing Completed
-Some basic sample unit tests have been added to this repository to demonstrate understanding of writing unit tests with Jest for components. 
+Some basic sample unit tests have been added to this repository to demonstrate an understanding of writing unit tests with Jest for components. 
 
-In a future enhancement of this site, dditional unit tests as well as the addition of integration and E2E tests would be added to cover all scenarios to be considered production ready.
+In a future enhancement of this site, additional unit tests as well as the addition of integration and E2E tests would be added to cover all scenarios to be considered production ready.
 
 ## Accessibility Testing
 A scan was performed of this site using the WAVE accessibility tool to determine if any major gaps exist and ensure compliance with WCAG 2.1 AA standards.
